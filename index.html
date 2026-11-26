@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#387B4D">
+  <meta name="description" content="Muôn sắc Việt – Chung một nhà. Bảo tàng Văn hóa các dân tộc Việt Nam lưu giữ, bảo tồn và lan tỏa những giá trị văn hóa đặc sắc của cộng đồng 54 dân tộc anh em.">
+  <title>Muôn sắc Việt — Chung một nhà</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --green: #387b4d;
+      --green-deep: #245b39;
+      --green-soft: #dce9df;
+      --cream: #f6f6e7;
+      --paper: #fffef8;
+      --ink: #1d3024;
+      --muted: #68756b;
+      --line: rgba(29, 48, 36, .16);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { width: min(100% - 40px, 1180px); margin-inline: auto; }
+
+    .topbar { position: absolute; inset: 0 0 auto; z-index: 2; color: white; }
+    .topbar-inner { min-height: 74px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.25); }
+    .brand { display: inline-flex; width: 208px; height: 50px; overflow: hidden; align-items: center; }
+    .brand img { display: block; width: 208px; height: 50px; object-fit: cover; }
+    .nav-link { text-decoration: none; font-size: 13px; letter-spacing: .02em; opacity: .92; }
+    .nav-link:hover { opacity: .7; }
+
+    .hero { min-height: 570px; height: min(660px, 78svh); position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 104px 0 54px; background: radial-gradient(ellipse at 77% 38%, #56976a 0%, #387b4d 38%, #2d7043 100%); background-size: 150% 150%; color: var(--cream); animation: bg-pan 12s ease-in-out infinite alternate; }
+    .hero::before, .hero::after { content: ""; position: absolute; pointer-events: none; border: 1px solid rgba(246,246,231,.18); border-radius: 50%; }
+    .hero::before { width: 540px; height: 540px; right: -280px; top: 44px; animation: drift 16s ease-in-out infinite alternate; }
+    .hero::after { width: 380px; height: 380px; right: -205px; top: 124px; animation: drift 12s ease-in-out infinite alternate-reverse; }
+    .hero-art { position: absolute; right: max(9%, calc((100vw - 1180px)/2)); top: 15%; width: min(34vw, 350px); aspect-ratio: 1; opacity: .95; transition: transform .25s ease-out; }
+    .hero-art svg { width: 100%; height: 100%; }
+    .orbit-ring { transform-box: fill-box; transform-origin: center; animation: orbit 22s linear infinite; }
+    .orbit-dot { transform-box: view-box; transform-origin: 180px 180px; animation: orbit 9s linear infinite; }
+    .logo-arches { animation: arch-glow 3.8s ease-in-out infinite alternate; }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; animation: rise-in .8s cubic-bezier(.2,.75,.25,1) both; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .17em; font-size: 11px; font-weight: 650; }
+    .hero .eyebrow { color: rgba(246,246,231,.78); margin: 0 0 18px; }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(52px, 10vw, 100px); line-height: .91; letter-spacing: -.055em; margin: 0; max-width: 800px; }
+    h1 span { display: block; font-style: italic; font-size: .68em; line-height: 1.15; letter-spacing: -.04em; color: #dce9df; }
+    .hero-copy { margin: 23px 0 0; max-width: 440px; color: rgba(246,246,231,.88); font-size: 16px; line-height: 1.7; }
+    .scroll-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 35px; text-decoration: none; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .scroll-link i { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid rgba(246,246,231,.55); border-radius: 50%; font-style: normal; font-size: 17px; transition: transform .2s; animation: nudge 2s ease-in-out infinite; }
+    .scroll-link:hover i { transform: translateY(3px); }
+
+    .ribbon { overflow: hidden; background: var(--green-deep); color: var(--cream); border-top: 1px solid rgba(246,246,231,.2); }
+    .ribbon-track { display: flex; width: max-content; align-items: center; gap: 22px; padding: 14px 0; animation: marquee 24s linear infinite; }
+    .ribbon-item { display: inline-flex; align-items: center; gap: 22px; white-space: nowrap; font: italic 17px var(--serif); color: rgba(246,246,231,.9); }
+    .ribbon-item::after { content: "✳"; font: 12px var(--sans); color: #b9d3bf; }
+    .ribbon:hover .ribbon-track { animation-play-state: paused; }
+
+    .intro { padding: 70px 0 76px; background: var(--cream); }
+    .intro-grid { display: grid; gap: 32px; }
+    .section-label { color: var(--green); margin: 0 0 22px; }
+    .intro h2, .ar-copy h2 { margin: 0; font: 400 clamp(34px, 8vw, 63px)/1.02 var(--serif); letter-spacing: -.04em; }
+    .intro-text { font-size: 16px; line-height: 1.8; color: #445449; }
+    .intro-text p { margin: 0 0 17px; }
+    .intro-text p:last-child { margin-bottom: 0; }
+
+    .statement { padding: 70px 0 78px; background: var(--paper); }
+    .statement-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .statement-head h2 { margin: 0; font: 400 clamp(31px, 7vw, 54px)/1.05 var(--serif); letter-spacing: -.035em; }
+    .statement-head p { margin: 0; max-width: 390px; color: var(--muted); line-height: 1.65; font-size: 14px; }
+    .pillars { display: grid; border-top: 1px solid var(--line); }
+    .pillar { padding: 24px 0; display: grid; grid-template-columns: 40px 1fr; gap: 14px; border-bottom: 1px solid var(--line); transition: transform .3s ease, border-color .3s ease; }
+    .pillar:hover { transform: translateY(-5px); border-color: var(--green); }
+    .pillar-index { color: var(--green); font: italic 18px var(--serif); }
+    .pillar h3 { margin: 0 0 8px; font: 400 23px/1.2 var(--serif); }
+    .pillar p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    .ar { padding: 24px 0 76px; background: var(--paper); scroll-margin-top: 24px; }
+    .ar-panel { overflow: hidden; background: var(--green-deep); color: var(--cream); border-radius: 4px; box-shadow: 0 22px 55px rgba(36,91,57,.13); }
+    .ar-visual { min-height: 220px; position: relative; display: grid; place-items: center; overflow: hidden; background: var(--green); }
+    .ar-visual::before, .ar-visual::after { content: ""; position: absolute; width: 240px; aspect-ratio: 1; border: 1px solid rgba(246,246,231,.35); border-radius: 50%; animation: pulse-ring 3s ease-in-out infinite; }
+    .ar-visual::after { width: 170px; animation-delay: .6s; }
+    .ar-mark { width: 62px; height: 62px; position: relative; z-index: 1; display: grid; place-items: center; border: 1px solid rgba(246,246,231,.6); border-radius: 50%; font: 18px var(--serif); animation: mark-float 3.4s ease-in-out infinite; }
+    .ar-copy { padding: 30px 24px 32px; }
+    .ar-copy .eyebrow { color: #c6d9ca; margin: 0 0 16px; }
+    .ar-copy h2 { font-size: clamp(34px, 8vw, 52px); }
+    .ar-copy p { color: rgba(246,246,231,.78); font-size: 14px; line-height: 1.7; margin: 15px 0 0; max-width: 470px; }
+    .ar-status { display: inline-flex; align-items: center; gap: 9px; margin-top: 23px; padding: 10px 12px; border: 1px solid rgba(246,246,231,.3); border-radius: 99px; color: var(--cream); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+    .ar-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #d7e5d9; }
+
+    footer { padding: 25px 0 30px; background: var(--cream); color: var(--green-deep); }
+    .footer-inner { display: flex; flex-direction: column; gap: 12px; }
+    .footer-name { margin: 0; font-size: 12px; font-weight: 650; }
+    .footer-note { margin: 0; color: var(--muted); font-size: 11px; }
+
+    .ar-dock { position: fixed; z-index: 10; inset: auto 0 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(246,246,231,.92); border-top: 1px solid rgba(29,48,36,.12); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .ar-button { width: min(100%, 440px); min-height: 52px; margin: 0 auto; padding: 0 20px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--green); color: var(--cream); text-decoration: none; font-size: 12px; font-weight: 650; letter-spacing: .09em; text-transform: uppercase; box-shadow: 0 8px 24px rgba(36,91,57,.23); transition: transform .2s, background-color .2s, box-shadow .2s; }
+    .ar-button:hover { transform: translateY(-2px); background: var(--green-deep); box-shadow: 0 12px 28px rgba(36,91,57,.3); }
+    .ar-button:active { transform: translateY(0) scale(.985); }
+    .ar-button-icon { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid rgba(246,246,231,.48); border-radius: 50%; font: 12px var(--serif); letter-spacing: 0; }
+    body { padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .pillar.reveal:nth-child(2) { transition-delay: .08s; }
+    .pillar.reveal:nth-child(3) { transition-delay: .16s; }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+    @keyframes pulse-ring { 0%, 100% { transform: scale(.96); opacity: .55; } 50% { transform: scale(1.05); opacity: 1; } }
+    @keyframes bg-pan { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+    @keyframes drift { from { transform: translate3d(-12px, 5px, 0) scale(.97); } to { transform: translate3d(12px, -9px, 0) scale(1.03); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes mark-float { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-8px) rotate(6deg); } }
+    @keyframes arch-glow { from { opacity: .68; } to { opacity: 1; } }
+
+    @media (min-width: 720px) {
+      .wrap { width: min(100% - 80px, 1180px); }
+      .topbar-inner { min-height: 88px; }
+      .hero { min-height: 620px; height: min(700px, 80svh); padding: 140px 0 76px; }
+      .hero-content { max-width: 760px; }
+      .hero-copy { font-size: 17px; }
+      .intro { padding: 100px 0 106px; }
+      .intro-grid { grid-template-columns: .8fr 1fr; gap: 11%; align-items: start; }
+      .section-label { margin-top: 9px; }
+      .intro-text { padding-top: 48px; font-size: 17px; }
+      .statement { padding: 100px 0 108px; }
+      .statement-head { flex-direction: row; align-items: end; justify-content: space-between; margin-bottom: 42px; }
+      .pillars { grid-template-columns: repeat(3, 1fr); }
+      .pillar { grid-template-columns: 1fr; align-content: start; min-height: 190px; padding: 24px 25px 12px 0; border-bottom: 0; }
+      .pillar + .pillar { border-left: 1px solid var(--line); padding-left: 25px; }
+      .pillar h3 { margin-top: 9px; }
+      .ar { padding: 0 0 110px; }
+      .ar-panel { display: grid; grid-template-columns: 1fr 1fr; min-height: 390px; }
+      .ar-visual { min-height: 390px; }
+      .ar-visual::before { width: 340px; }
+      .ar-visual::after { width: 230px; }
+      .ar-copy { align-self: center; padding: 48px clamp(34px, 6vw, 78px); }
+      .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+      .ar-dock { inset: auto 28px 24px auto; padding: 0; background: transparent; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .ar-button { width: auto; min-height: 58px; padding: 0 24px; }
+      body { padding-bottom: 0; }
+    }
+
+    @media (max-width: 719px) {
+      .hero-art { width: 205px; top: 10%; right: -22px; opacity: .66; }
+      .hero { min-height: 570px; height: min(620px, 75svh); }
+      .hero::before { right: -390px; top: 5px; }
+      .hero::after { right: -320px; top: 85px; }
+      .hero-copy { max-width: 350px; }
+      .hero-content { padding-bottom: 2px; }
+      .topbar-inner { min-height: 64px; }
+      .brand, .brand img { width: 170px; height: 42px; }
+      .ar-copy { padding: 28px 22px 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Bảo tàng Văn hóa các dân tộc Việt Nam — trang chủ">
+        <img src="logo.jpeg" alt="Bảo tàng Văn hóa các dân tộc Việt Nam">
+      </a>
+      <a class="nav-link" href="#bao-tang">Về bảo tàng <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="180" cy="180" r="144" stroke="#F6F6E7" stroke-opacity=".32" stroke-dasharray="2 8" class="orbit-ring"/>
+          <circle cx="180" cy="180" r="115" stroke="#F6F6E7" stroke-opacity=".4"/>
+          <circle cx="180" cy="180" r="88" stroke="#F6F6E7" stroke-opacity=".2"/>
+          <path d="M105 227V154c0-26 18-45 42-45s42 19 42 45v73m-84-37c0-26 18-45 42-45s42 19 42 45v37m-84-1c0-26 18-45 42-45s42 19 42 45" stroke="#F6F6E7" stroke-width="12" stroke-linecap="round" class="logo-arches"/>
+          <circle cx="280" cy="106" r="11" fill="#F6F6E7" class="orbit-dot"/>
+          <circle cx="80" cy="250" r="6" fill="#DCE9DF"/>
+        </svg>
+      </div>
+      <div class="wrap hero-content">
+        <p class="eyebrow">Bảo tàng Văn hóa các dân tộc Việt Nam</p>
+        <h1 id="hero-title">Muôn sắc Việt<span>Chung một nhà</span></h1>
+        <p class="hero-copy">Nơi lưu giữ, bảo tồn và lan tỏa những giá trị văn hóa đặc sắc của cộng đồng 54 dân tộc anh em.</p>
+        <a class="scroll-link" href="#bao-tang"><i aria-hidden="true">↓</i> Khám phá câu chuyện</a>
+      </div>
+    </section>
+
+    <div class="ribbon" aria-label="Muôn sắc Việt, 54 dân tộc, chung một nhà">
+      <div class="ribbon-track" aria-hidden="true">
+        <span class="ribbon-item">Muôn sắc Việt</span><span class="ribbon-item">54 dân tộc anh em</span><span class="ribbon-item">Chung một nhà</span><span class="ribbon-item">Muôn sắc Việt</span><span class="ribbon-item">54 dân tộc anh em</span><span class="ribbon-item">Chung một nhà</span>
+      </div>
+    </div>
+
+    <section class="intro" id="bao-tang" aria-labelledby="intro-title">
+      <div class="wrap intro-grid reveal">
+        <div>
+          <p class="eyebrow section-label">Bảo tàng</p>
+          <h2 id="intro-title">Mỗi bản sắc riêng, cùng làm nên một Việt Nam.</h2>
+        </div>
+        <div class="intro-text">
+          <p>Mỗi dân tộc mang một bản sắc riêng, từ phong tục, trang phục, ngôn ngữ đến nghệ thuật và đời sống tinh thần, cùng góp phần tạo nên bức tranh văn hóa Việt Nam đa dạng và thống nhất.</p>
+          <p>Không chỉ gìn giữ những giá trị truyền thống, bảo tàng còn là cầu nối giữa quá khứ và hiện tại, nơi những câu chuyện văn hóa được tiếp nối, lan tỏa và đưa đến gần hơn với các thế hệ hôm nay và mai sau.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement" aria-labelledby="statement-title">
+      <div class="wrap reveal">
+        <div class="statement-head">
+          <div>
+            <p class="eyebrow section-label">Giá trị văn hóa</p>
+            <h2 id="statement-title">Đa dạng trong bản sắc.<br>Thống nhất trong cộng đồng.</h2>
+          </div>
+          <p>Những câu chuyện văn hóa được tiếp nối qua nhiều thế hệ, từ đời sống thường ngày đến nghệ thuật và tinh thần.</p>
+        </div>
+        <div class="pillars">
+          <article class="pillar reveal">
+            <span class="pillar-index">01</span>
+            <div><h3>Phong tục & đời sống</h3><p>Những nếp sống và phong tục làm nên bản sắc riêng của mỗi cộng đồng.</p></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="pillar-index">02</span>
+            <div><h3>Trang phục & hoa văn</h3><p>Sắc màu, hình ảnh và họa tiết mang dấu ấn văn hóa dân tộc.</p></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="pillar-index">03</span>
+            <div><h3>Ngôn ngữ & nghệ thuật</h3><p>Di sản tinh thần góp phần tạo nên bức tranh văn hóa Việt Nam đa dạng.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ar" id="trai-nghiem-ar" aria-labelledby="ar-title">
+      <div class="wrap reveal">
+        <div class="ar-panel">
+          <div class="ar-visual" aria-hidden="true"><span class="ar-mark">AR</span></div>
+          <div class="ar-copy">
+            <p class="eyebrow">Trải nghiệm AR</p>
+            <h2 id="ar-title">Chạm vào sắc màu — Đánh thức văn hóa</h2>
+            <p>Khu vực giới thiệu trải nghiệm AR sẽ được hoàn thiện khi có hình ảnh và video tư liệu.</p>
+            <span class="ar-status">Đang chờ tư liệu</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p class="footer-name">Bảo tàng Văn hóa các dân tộc Việt Nam</p>
+      <p class="footer-note">Muôn sắc Việt — Chung một nhà</p>
+    </div>
+  </footer>
+  <aside class="ar-dock" aria-label="Truy cập trải nghiệm AR">
+    <a class="ar-button" href="#trai-nghiem-ar"><span class="ar-button-icon" aria-hidden="true">AR</span> Trải nghiệm AR <span aria-hidden="true">↗</span></a>
+  </aside>
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => revealObserver.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('is-visible'));
+    }
+    const heroArt = document.querySelector('.hero-art');
+    if (heroArt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener('pointermove', event => {
+        const x = (event.clientX / window.innerWidth - .5) * 12;
+        const y = (event.clientY / window.innerHeight - .5) * 12;
+        heroArt.style.translate = `${x}px ${y}px`;
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
